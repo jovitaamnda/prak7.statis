@@ -1,0 +1,87 @@
++*In[6]:*+
+[source, ipython3]
+----
+import pandas as pd
+#memanggil dan menampilkan dataset
+data_jovita = pd.read_csv('C:/Users/jovita amanda putri/Documents/Prakstatis/titanic.csv')
+print(data_jovita)
+
+
+----
+
+
++*Out[6]:*+
+----
+     Survived  Pclass                                               Name  \
+0           0       3                             Mr. Owen Harris Braund   
+1           1       1  Mrs. John Bradley (Florence Briggs Thayer) Cum...   
+2           1       3                              Miss. Laina Heikkinen   
+3           1       1        Mrs. Jacques Heath (Lily May Peel) Futrelle   
+4           0       3                            Mr. William Henry Allen   
+..        ...     ...                                                ...   
+882         0       2                               Rev. Juozas Montvila   
+883         1       1                        Miss. Margaret Edith Graham   
+884         0       3                     Miss. Catherine Helen Johnston   
+885         1       1                               Mr. Karl Howell Behr   
+886         0       3                                 Mr. Patrick Dooley   
+
+        Sex Age  Siblings/Spouses Aboard  Parents/Children Aboard     Fare  
+0      male  22                        1                        0     7,25  
+1    female  38                        1                        0  712,833  
+2    female  26                        0                        0    7,925  
+3    female  35                        1                        0     53,1  
+4      male  35                        0                        0     8,05  
+..      ...  ..                      ...                      ...      ...  
+882    male  27                        0                        0       13  
+883  female  19                        0                        0       30  
+884  female   7                        1                        2    23,45  
+885    male  26                        0                        0       30  
+886    male  32                        0                        0     7,75  
+
+[887 rows x 8 columns]
+----
+
+
++*In[7]:*+
+[source, ipython3]
+----
+data5 = data_jovita[['Name','Sex','Age','Pclass','Fare']]
+penumpang = data5.groupby('Sex')['Name'].nunique()
+print('Jumlah Penumpang : \n',penumpang)
+
+----
+
+
++*Out[7]:*+
+----
+Jumlah Penumpang : 
+ Sex
+female    314
+male      573
+Name: Name, dtype: int64
+----
+
+
++*In[8]:*+
+[source, ipython3]
+----
+data6 = data_jovita[['Name', 'Sex', 'Age', 'Pclass', 'Fare']]
+survivedpassanger=data6['Sex'].loc[data_jovita['Survived']==1]
+print('Penumpang yang survived:\n',survivedpassanger.value_counts())
+----
+
+
++*Out[8]:*+
+----
+Penumpang yang survived:
+ female    233
+male      109
+Name: Sex, dtype: int64
+----
+
+
++*In[ ]:*+
+[source, ipython3]
+----
+
+----
